@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "name": "FM - SW - SHIM - SERVER",
   "description": "Service worker - shim testing",
-  "type": "certified",
+  "type": "trusted",
   "launch_path": "/fm-sw/index.html",
   "icons": {
     "16": "/fm-sw/style/icons/icon.png",
