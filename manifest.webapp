@@ -1,0 +1,27 @@
+{
+  "appcache_path": "/fm-sw/manifest.appcache",
+  "version": "0.1.0",
+  "name": "FM - SW - SHIM - SERVER",
+  "description": "Service worker - shim testing",
+  "type": "certified",
+  "launch_path": "/fm-sw/index.html",
+  "icons": {
+    "16": "/fm-sw/style/icons/icon.png",
+    "48": "/fm-sw/style/icons/icon.png",
+    "60": "/fm-sw/style/icons/icon.png",
+    "128": "/fm-sw/style/icons/icon.png"
+  },
+  "connections": {
+    "http://telefonicaid.github.io/fm-sw": {
+      "description": "Test SHIM IAC",
+      "rules": {}
+    }
+  },
+  "permissions": {
+    "fmradio":{},
+  },
+  "installs_allowed_from": [
+    "*"
+  ]
+}
+
