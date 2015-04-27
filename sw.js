@@ -41,7 +41,7 @@ this.onconnect = function(msg) {
   msg.source.onmessage = aMsg => {
     debug('SW SETTING msg received:' + JSON.stringify(aMsg.data));
     debug(JSON.stringify(aMsg));
-    if (!aMsg.data || !aMsg.data.type || !aMsg.data.name) {
+    if (!aMsg.data) {
       debug('Message received bad formed');
       return;
     }
