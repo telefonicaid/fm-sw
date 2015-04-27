@@ -10,7 +10,7 @@
     _observers: [],
 
     handleRequest: function ss_handleRequest(msg) {
-      switch (msg.type) {
+      switch (msg.data.type) {
         case 'get':
           this.handleGetMessage(msg);
           break;
