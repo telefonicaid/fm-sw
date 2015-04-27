@@ -47,27 +47,6 @@ debug('APP carga app.js');
     });
   };
 
-  /*navigator.serviceWorker.addEventListener('message', function(evt) {
-    // ADDED FOR SHIM
-    // This is shim specific (and wouldn't be needed if navigator.connect were
-    // native, or MessageChannel worked!). If we want to process messages that
-    // come from our service worker, we need to ignore the shim internal
-    // messages. So, dirty and quick:
-    if (NCShim.isInternalMessage(evt)) {
-      return;
-    }
-    // END ADDED FOR SHIM
-
-    // from this point on, you would write your handler as if the shim weren't
-    // present.
-    debug('APP Msg recibido en app');
-    for (var kk in evt) {
-      debug('APP onMesssage -->:' + kk + ':' + JSON.stringify(evt[kk]));
-    }
-
-    RadioFMService.handleRequest(evt);
-  });*/
-
   var processSWRequest = function(channel, evt) {
     evt.channel = channel;
 

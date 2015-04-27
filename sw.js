@@ -7,7 +7,7 @@
 // ADDED FOR POLYFILL
 
 function debug(str) {
-  console.log('MANU -*- -->' + str);
+  console.log('MANU SW -*- -->' + str);
 }
 
 // ADDED FOR POLYFILL: Import the polyfill script
