@@ -42,9 +42,8 @@ this.onconnect = function(msg) {
   // so we can do:
   msg.acceptConnection(true);
   msg.source.onmessage = function(aMsg) {
-    var msg = aMsg.data;
     debug(JSON.stringify(aMsg));
-    if (!msg || !msg.type || !msg.name) {
+    if (!aMsg || !aMsg.type || !aMsg.name) {
       debug('Message received bad formed');
       return;
     }
@@ -56,7 +55,7 @@ this.onconnect = function(msg) {
         debug('SW SETTING Error: no clients are currently controlled.');
       } else {
         debug('SW SETTING Sending...');
-        res[0].postMessage(msg);
+        res[0].postMessage(aMsg);
       }
     });
   };
