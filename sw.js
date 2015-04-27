@@ -53,7 +53,9 @@ this.onconnect = function(msg) {
     // us a MessageChannel to talk to it
     this.channelToMT.then(channel => {
       // This has a problem... we can't queue messages
+      debug('channelToMT');
       channel.onmessage = evt => {
+        debug('channelToMT onmessage');
         msg.source.postMessage(evt.data);
       };
       channel.postMessage(aMsg.data);

@@ -49,7 +49,7 @@ debug('APP carga app.js');
 
   var processSWRequest = function(channel, evt) {
     evt.channel = channel;
-
+debug('processSWRequest APP');
     RadioFMService.handleRequest(evt);
   };
 
