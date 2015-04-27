@@ -34,6 +34,7 @@ this.channelToMT = new Promise((resolve, reject) => {
 this.onconnect = function(msg) {
   debug('SW onconnect: We should have a port here on msg.source. ' +
         (msg.source.postMessage ? 'yes!' : 'no :('));
+  debug(JSON.stringify(msg));
   // msg.source should have the endpoint to send and receive messages,
   // so we can do:
   msg.acceptConnection(true);
