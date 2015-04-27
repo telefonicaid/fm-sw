@@ -27,48 +27,48 @@
     },
 
     handleGetMessage: function sw_handleGetMessage(msg) {
-      if (!msg.name) {
+      if (!msg.data.name) {
         console.error('Missing parameter: name');
         return;
       }
 
-      if(this.mozFMRadio[msg.name]) {
-        msg.source.postMessage({type: 'get', name: msg.name,
-          value: this.mozFMRadio[msg.name]});
+      if(this.mozFMRadio[msg.data.name]) {
+        msg.source.postMessage({type: 'get', name: msg.data.name,
+          value: this.mozFMRadio[msg.data.name]});
       }
     },
 
     handleSetMessage: function sw_handleSetMessage(msg) {
-      if (!msg.name || typeof msg.value === 'undefined') {
+      if (!msg.data.name || typeof msg.data.value === 'undefined') {
         console.error('Missing parameter: name');
         return;
       }
 
-      if(this.mozFMRadio[msg.name]) {
-        this.mozFMRadio[msg.name] = msg.value;
-        msg.source.postMessage({type: 'set', name: msg.name,
-          value: this.mozFMRadio[msg.name] == msg.value});
+      if(this.mozFMRadio[msg.data.name]) {
+        this.mozFMRadio[msg.data.name] = msg.data.value;
+        msg.source.postMessage({type: 'set', name: msg.data.name,
+          value: this.mozFMRadio[msg.data.name] == msg.data.value});
       }
     },
 
     handleListenerMessage: function sw_handleListenerMessage(msg) {
-      if (!msg.name) {
+      if (!msg.data.name) {
         console.error('Missing parameter: name');
         return;
       }
 
-      if(this.mozFMRadio[msg.name]) {
-        this.mozFMRadio[msg.name] = function (value) {
-          msg.source.postMessage({type: 'listener', name: msg.name,
+      if(this.mozFMRadio[msg.data.name]) {
+        this.mozFMRadio[msg.data.name] = function (value) {
+          msg.source.postMessage({type: 'listener', name: msg.data.name,
             value: value});
         };
       }
     },
 
     handleMessage: function sw_handleMessage(msg) {
-      if(this.mozFMRadio[msg.type]) {
+      if(this.mozFMRadio[msg.data.type]) {
         msg.source.postMessage({type: 'listener',
-          value: this.mozFMRadio[msg.type](msg.args)});
+          value: this.mozFMRadio[msg.data.type](msg.data.args)});
       }
     },
 
