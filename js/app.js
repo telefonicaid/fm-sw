@@ -64,6 +64,8 @@ debug('APP carga app.js');
     for (var kk in evt) {
       debug('APP onMesssage -->:' + kk + ':' + JSON.stringify(evt[kk]));
     }
+
+    RadioFMService.handleRequest(evt);
   });
 
   if ('serviceWorker' in navigator) {
