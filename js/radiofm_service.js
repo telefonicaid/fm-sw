@@ -20,6 +20,9 @@
         case 'listener':
           this.handleListenerMessage(msg);
           break;
+        case 'execute':
+          this.handleExecuteMessage(msg);
+          break;
         default:
           this.handleMessage(msg);
           break;
@@ -48,6 +51,19 @@ debug('MESSAGE RECEIVED ---> ' + msg.data.name, this.mozFMRadio[msg.data.name]);
         this.mozFMRadio[msg.data.name] = msg.data.value;
         msg.channel.postMessage({type: 'set', name: msg.data.name,
           value: this.mozFMRadio[msg.data.name] == msg.data.value});
+      }
+    },
+
+    handleExecuteMessage: function sw_handleExecuteMessage(msg) {
+      if (!msg.data.name) {
+        console.error('Missing parameter: name');
+        return;
+      }
+
+      if(typeof this.mozFMRadio[msg.data.name] === 'function') {
+        this.mozFMRadio[msg.data.name]();
+        msg.channel.postMessage({type: 'execute', name: msg.data.name,
+          value: true});
       }
     },
 
