@@ -26,7 +26,7 @@
       }
     },
 
-    handleGetMessage = function sw_handleGetMessage(msg) {
+    handleGetMessage: function sw_handleGetMessage(msg) {
       if (!msg.name) {
         console.error('Missing parameter: name');
         return;
@@ -38,7 +38,7 @@
       }
     },
 
-    handleSetMessage = function sw_handleSetMessage(msg) {
+    handleSetMessage: function sw_handleSetMessage(msg) {
       if (!msg.name || typeof msg.value === 'undefined') {
         console.error('Missing parameter: name');
         return;
@@ -51,7 +51,7 @@
       }
     },
 
-    handleListenerMessage = function sw_handleListenerMessage(msg) {
+    handleListenerMessage: function sw_handleListenerMessage(msg) {
       if (!msg.name) {
         console.error('Missing parameter: name');
         return;
@@ -65,7 +65,7 @@
       }
     },
 
-    handleMessage = function sw_handleMessage(msg) {
+    handleMessage: function sw_handleMessage(msg) {
       if(this.mozFMRadio[msg.type]) {
         msg.source.postMessage({type: 'listener',
           value: this.mozFMRadio[msg.type](msg.args)});
