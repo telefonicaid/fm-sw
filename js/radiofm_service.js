@@ -10,6 +10,7 @@
     _observers: [],
 
     handleRequest: function ss_handleRequest(msg) {
+console.info('MANU - MSG RECEIVED' + JSON.stringify(msg.data));
       switch (msg.data.type) {
         case 'get':
           this.handleGetMessage(msg);
@@ -34,7 +35,7 @@
         console.error('Missing parameter: name');
         return;
       }
-debug('MESSAGE RECEIVED ---> ' + msg.data.name, this.mozFMRadio[msg.data.name]);
+
       if(this.mozFMRadio[msg.data.name]) {
         msg.channel.postMessage({type: 'get', name: msg.data.name,
           value: this.mozFMRadio[msg.data.name]});
