@@ -47,7 +47,7 @@ debug('APP carga app.js');
     });
   };
 
-  navigator.serviceWorker.addEventListener('message', function(evt) {
+  /*navigator.serviceWorker.addEventListener('message', function(evt) {
     // ADDED FOR SHIM
     // This is shim specific (and wouldn't be needed if navigator.connect were
     // native, or MessageChannel worked!). If we want to process messages that
@@ -66,11 +66,23 @@ debug('APP carga app.js');
     }
 
     RadioFMService.handleRequest(evt);
-  });
+  });*/
+
+  var processSWRequest = function(channel, evt) {
+    evt.channel = channel;
+
+    RadioFMService.handleRequest(evt);
+  };
 
   if ('serviceWorker' in navigator) {
     debug('APP serviceWorker in navigator');
     register();
+    navigator.serviceWorker.ready.then(sw => {
+      // Let's pass the SW some way to talk to us...
+      var mc = new MessageChannel();
+      mc.port1.onmessage = processSWRequest.bind(this, mc.port1);
+      sw.active && sw.active.postMessage({}, [mc.port2]);
+    });
   } else {
     debug('APP navigator has not ServiceWorker');
     return;

@@ -33,7 +33,7 @@
       }
 
       if(this.mozFMRadio[msg.data.name]) {
-        msg.source.postMessage({type: 'get', name: msg.data.name,
+        msg.channel.postMessage({type: 'get', name: msg.data.name,
           value: this.mozFMRadio[msg.data.name]});
       }
     },
@@ -46,7 +46,7 @@
 
       if(this.mozFMRadio[msg.data.name]) {
         this.mozFMRadio[msg.data.name] = msg.data.value;
-        msg.source.postMessage({type: 'set', name: msg.data.name,
+        msg.channel.postMessage({type: 'set', name: msg.data.name,
           value: this.mozFMRadio[msg.data.name] == msg.data.value});
       }
     },
@@ -59,7 +59,7 @@
 
       if(this.mozFMRadio[msg.data.name]) {
         this.mozFMRadio[msg.data.name] = function (value) {
-          msg.source.postMessage({type: 'listener', name: msg.data.name,
+          msg.channel.postMessage({type: 'listener', name: msg.data.name,
             value: value});
         };
       }
@@ -67,15 +67,9 @@
 
     handleMessage: function sw_handleMessage(msg) {
       if(this.mozFMRadio[msg.data.type]) {
-        msg.source.postMessage({type: 'listener',
+        msg.channel.postMessage({type: 'listener',
           value: this.mozFMRadio[msg.data.type](msg.data.args)});
       }
-    },
-
-    respondRequest: function ss_respondRequest(response) {
-      navigator.serviceWorker.ready.then(sw => {
-        sw.active && sw.active.postMessage(response);
-      });
     }
   };
 
