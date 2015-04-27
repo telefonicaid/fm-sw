@@ -12,16 +12,16 @@
     handleRequest: function ss_handleRequest(msg) {
       switch (msg.type) {
         case 'get':
-          this.handleGetMessage(aMsg);
+          this.handleGetMessage(msg);
           break;
         case 'set':
-          this.handleSetMessage(aMsg);
+          this.handleSetMessage(msg);
           break;
         case 'listener':
-          this.handleListenerMessage(aMsg);
+          this.handleListenerMessage(msg);
           break;
         default:
-          this.handleMessage(aMsg);
+          this.handleMessage(msg);
           break;
       }
     },
