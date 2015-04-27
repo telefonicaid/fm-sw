@@ -31,7 +31,7 @@
         console.error('Missing parameter: name');
         return;
       }
-
+debug('MESSAGE RECEIVED ---> ' + msg.data.name, this.mozFMRadio[msg.data.name]);
       if(this.mozFMRadio[msg.data.name]) {
         msg.channel.postMessage({type: 'get', name: msg.data.name,
           value: this.mozFMRadio[msg.data.name]});
