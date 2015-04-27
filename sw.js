@@ -43,7 +43,7 @@ this.onconnect = function(msg) {
   msg.acceptConnection(true);
   msg.source.onmessage = function(aMsg) {
     var msg = aMsg.data;
-    if (!msg.type || !msg.name) {
+    if (!msg || !msg.type || !msg.name) {
       debug('Message received bad formed');
       return;
     }
