@@ -48,8 +48,11 @@ console.info('MANU - MSG RECEIVED' + JSON.stringify(msg.data));
         return;
       }
 
-      if(this.mozFMRadio[msg.data.name]) {
-        this.mozFMRadio[msg.data.name] = msg.data.value;
+      var method = 'set' + msg.data.name.charAt(0).toUpperCase() +
+        msg.data.name.slice(1);
+
+      if(this.mozFMRadio[method]) {
+        this.mozFMRadio[method](msg.data.value);
         msg.channel.postMessage({type: 'set', name: msg.data.name,
           value: this.mozFMRadio[msg.data.name] == msg.data.value});
       }
