@@ -78,7 +78,9 @@ console.info('MANU - MSG RECEIVED' + JSON.stringify(msg.data));
       }
 
       if(this.mozFMRadio[msg.data.name]) {
+        debug('Listener added  --> ' + msg.data.name);
         this.mozFMRadio[msg.data.name] = function (value) {
+          debug('Listener triggered  --> ' + msg.data.name);
           msg.channel.postMessage({type: 'listener', name: msg.data.name,
             value: value});
         };
@@ -90,11 +92,11 @@ console.info('MANU - MSG RECEIVED' + JSON.stringify(msg.data));
         var req = this.mozFMRadio[msg.data.type](msg.data.args);
 
         req.onsuccess = function() {
-          msg.channel.postMessage({type: 'listener', value: true});
+          msg.channel.postMessage({type: msg.data.type, value: true});
         };
 
         req.onerror = function() {
-          msg.channel.postMessage({type: 'listener', value: false});
+          msg.channel.postMessage({type: msg.data.type, value: false});
         }
       }
     }
