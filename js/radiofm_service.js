@@ -78,8 +78,9 @@ console.info('MANU - MSG RECEIVED' + JSON.stringify(msg.data));
       }
 
 console.info('Listener added  --> ' + msg.data.name);
-      this.mozFMRadio[msg.data.name] = function (value) {
+      this.mozFMRadio[msg.data.name] = function (evt) {
         console.info('Listener triggered  --> ' + msg.data.name);
+        console.info('Listener triggered  --> ' + JSON.stringify(evt));
         msg.channel.postMessage({type: 'listener', name: msg.data.name,
           value: value});
       };
