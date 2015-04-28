@@ -87,8 +87,15 @@ console.info('MANU - MSG RECEIVED' + JSON.stringify(msg.data));
 
     handleMessage: function sw_handleMessage(msg) {
       if(this.mozFMRadio[msg.data.type]) {
-        msg.channel.postMessage({type: 'listener',
-          value: this.mozFMRadio[msg.data.type](msg.data.args)});
+        var req = this.mozFMRadio[msg.data.type](msg.data.args);
+
+        req.onsuccess = function() {
+          msg.channel.postMessage({type: 'listener', value: true});
+        };
+
+        req.onerror = function() {
+          msg.channel.postMessage({type: 'listener', value: false});
+        }
       }
     }
   };
