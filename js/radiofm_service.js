@@ -35,7 +35,7 @@ console.info('MANU - MSG RECEIVED' + JSON.stringify(msg.data));
         console.error('Missing parameter: name');
         return;
       }
-
+console.info('MANU -- key: ' + msg.data.name + 'value: ' + this.mozFMRadio[msg.data.name]);
       if(this.mozFMRadio[msg.data.name]) {
         msg.channel.postMessage({type: 'get', name: msg.data.name,
           value: this.mozFMRadio[msg.data.name]});
