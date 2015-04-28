@@ -77,8 +77,9 @@ console.info('MANU - MSG RECEIVED' + JSON.stringify(msg.data));
         return;
       }
 
+console.info('Listener added  --> ' + msg.data.name);
+console.info('mozFMRadio has method? --> ' + this.mozFMRadio[msg.data.name] ? 'si' : 'no');
       if(this.mozFMRadio[msg.data.name]) {
-        console.info('Listener added  --> ' + msg.data.name);
         this.mozFMRadio[msg.data.name] = function (value) {
           console.info('Listener triggered  --> ' + msg.data.name);
           msg.channel.postMessage({type: 'listener', name: msg.data.name,
