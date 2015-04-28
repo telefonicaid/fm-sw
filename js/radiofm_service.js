@@ -36,7 +36,7 @@ console.info('MANU - MSG RECEIVED' + JSON.stringify(msg.data));
         return;
       }
 console.info('MANU -- key: ' + msg.data.name + 'value: ' + this.mozFMRadio[msg.data.name]);
-      if(this.mozFMRadio[msg.data.name]) {
+      if(typeof this.mozFMRadio[msg.data.name] !== 'undefined') {
         msg.channel.postMessage({type: 'get', name: msg.data.name,
           value: this.mozFMRadio[msg.data.name]});
       }
